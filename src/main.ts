@@ -46,6 +46,8 @@ const sphereMaterial = new THREE.MeshStandardMaterial({
 
 
 const doorTexture = new THREE.TextureLoader().load('door.png');
+doorTexture.wrapS = THREE.RepeatWrapping;
+doorTexture.wrapT = THREE.RepeatWrapping;
 const platformTexture = new THREE.TextureLoader().load('floor.png');
 const platformBumpMap = new THREE.TextureLoader().load('floor_bump.png');
 const doorMaterial = new THREE.MeshStandardMaterial({
@@ -97,21 +99,27 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 // Ползунки
 const doorWidthSlider: HTMLInputElement = document.createElement('input');
+const doorHeightSlider: HTMLInputElement = document.createElement('input');
+
 doorWidthSlider.type = 'range';
 doorWidthSlider.min = '1';
 doorWidthSlider.max = '5';
 doorWidthSlider.value = '1';
-doorWidthSlider.addEventListener('input', () => {
-  door.scale.x = parseFloat(doorWidthSlider.value);
-});
 
-const doorHeightSlider: HTMLInputElement = document.createElement('input');
+
 doorHeightSlider.type = 'range';
 doorHeightSlider.min = '1';
 doorHeightSlider.max = '10';
 doorHeightSlider.value = '1';
+
+
+doorWidthSlider.addEventListener('input', () => {
+  door.scale.x = parseFloat(doorWidthSlider.value);
+  doorTexture.repeat.set(parseFloat(doorWidthSlider.value),parseFloat(doorHeightSlider.value));
+});
 doorHeightSlider.addEventListener('input', () => {
   door.scale.y = parseFloat(doorHeightSlider.value);
+  doorTexture.repeat.set(parseFloat(doorWidthSlider.value),parseFloat(doorHeightSlider.value));
 });
 
 // GUI ползунков

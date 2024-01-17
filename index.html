@@ -5,8 +5,29 @@
 		<title>Test</title>
 		<style>
 			body { margin: 0; }
-      #gui { position: absolute; top: 0; right: 0; }
-		</style>
+			#gui {
+			  position: absolute;
+			  top: 10px;
+			  left: 10px;
+			  padding: 10px;
+			  background: rgba(255, 255, 255, 0.795); 
+			  display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			  border-radius: 10px;
+			}
+			#gui input[type=range] {
+			  writing-mode: bt-lr; 
+			  -webkit-appearance: slider-vertical; 
+			  width: 20px;
+			  height: 200px; 
+			  padding: 0 5px;
+			}
+			.label {
+			  margin: 10px 0;
+			}
+		  </style>
+		  
 	</head>
 	<body>
 		<script type="module" src="src/main.ts"></script>
